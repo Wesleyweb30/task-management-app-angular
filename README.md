@@ -1,27 +1,34 @@
-# Project
+# Frontend Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+Este é o frontend de uma aplicação desenvolvida em Angular 18, conectada a uma API backend construída com NestJS. O projeto implementa autenticação segura, proteção de rotas e uma interface intuitiva para o gerenciamento de tarefas.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Funcionalidades
 
-## Code scaffolding
+- **Autenticação JWT**: Login seguro e persistência da sessão do usuário.
+- **Proteção de Rotas**: Apenas usuários autenticados têm acesso às áreas restritas.
+- **Formulários Reativos**: Validação dinâmica com mensagens personalizadas de erro.
+- **Conexão com Backend**: Integração com API REST via `HttpClient` para operações de CRUD.
+- **Design Responsivo**: Interface adaptada para dispositivos móveis e desktops.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🛠️ Tecnologias Utilizadas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Framework**: Angular 18
+- **Linguagem**: TypeScript
+- **Gerenciamento de Estado**: RxJS
+- **Estilização**: SCSS
+- **Comunicação HTTP**: Angular HttpClient
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🌐 Rotas da Aplicação
 
-## Running end-to-end tests
+- **`/login`**:  
+  Página de autenticação onde o usuário insere suas credenciais (usuário e senha) para acessar o sistema.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **`/task`** *(rota protegida)*:  
+  Página principal com o gerenciamento de tarefas. Apenas usuários autenticados podem acessá-la.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
