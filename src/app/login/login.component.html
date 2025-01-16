@@ -1,42 +1,42 @@
-<div class="flex items-center justify-center min-h-screen bg-gray-100">  
-    <div class="w-full max-w-xs">  
-        <h1 class="text-2xl font-bold text-center text-gray-700">Login</h1> 
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-xs">
+        <h1 class="text-2xl font-bold text-center text-gray-700">Login</h1>
 
-        <form class="mt-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
-            <div class="mb-4">  
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">  
-                    Nome de Usuário  
-                </label>  
-                <input   
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"   
-                    id="username"   
-                    type="text"   
-                    placeholder="Seu nome de usuário"   
-                    required
-                    formControlName="username"  
-                />  
-            </div>  
-            <div class="mb-6">  
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">  
-                    Senha  
-                </label>  
-                <input   
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"   
-                    id="password"   
-                    type="password"   
-                    placeholder="Sua senha"   
-                    required  
-                    formControlName="password"
-                />  
-            </div>  
-            <div class="flex items-center justify-between">  
-                <button   
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"   
-                    type="submit"  
-                >  
-                    Entrar  
-                </button>  
-            </div>  
-        </form>  
-    </div>  
-  </div>
+        <form class="mt-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Nome de Usuário
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="username" type="text" placeholder="Seu nome de usuário" required formControlName="username" />
+                
+                    @if(loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched){
+                        <p class="text-red-500 text-xs italic">Nome de usuário é obrigatório.</p>
+                    } 
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Senha
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="password" type="password" placeholder="Sua senha" required formControlName="password" />
+                    @if(loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched){
+                        <p class="text-red-500 text-xs italic">Senha de usuário é obrigatório.</p>
+                    }
+                    @if(loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched){
+                        <p class="text-red-500 text-xs italic">A senha deve ter no mínimo 6 caracteres.</p>
+                    }
+            </div>
+            <div class="flex items-center justify-between">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit" [disabled]="!loginForm.valid">
+                    Entrar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

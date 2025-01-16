@@ -1,0 +1,63 @@
+<div class="container mx-auto mt-8 max-w-4xl px-4">
+  <h1 class="text-3xl font-extrabold text-center mb-6 text-indigo-800">Gerenciador de Tarefas</h1>
+  
+  <!-- Formulário para adicionar tarefas -->
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()" class="space-y-6">
+    
+    <!-- Título -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-lg font-semibold mb-2">Título</label>
+      <input
+        type="text"
+        formControlName="title"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-md"
+        placeholder="Título da tarefa"
+      />
+    </div>
+
+    <!-- Descrição -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-lg font-semibold mb-2">Descrição</label>
+      <textarea
+        formControlName="description"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-md"
+        placeholder="Descrição da tarefa (opcional)"
+      ></textarea>
+    </div>
+
+    <!-- Status -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-lg font-semibold mb-2">Status</label>
+      <select
+        formControlName="status"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-md"
+      >
+        <option value="">Selecione um status</option>
+        <option value="Pendente">Pendente</option>
+        <option value="Em andamento">Em andamento</option>
+        <option value="Concluído">Concluído</option>
+      </select>
+    </div>
+
+    <!-- Data de Expiração -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-lg font-semibold mb-2">Data de Expiração</label>
+      <input
+        type="date"
+        formControlName="expirationDate"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-md"
+      />
+    </div>
+
+    <!-- Botão de Submissão -->
+    <div>
+      <button
+        type="submit"
+        class="w-full py-3 bg-indigo-600 text-white text-lg font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        [disabled]="!taskForm.valid"
+      >
+        Adicionar Tarefa
+      </button>
+    </div>
+  </form>
+</div>

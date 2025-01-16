@@ -2,7 +2,7 @@ import { LoginService } from './../services/login.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; // Importe o Router
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -14,7 +14,7 @@ import { Router } from '@angular/router'; // Importe o Router
 })
 export class LoginComponent {
 
-  constructor(private loginService: LoginService, private router: Router) {} // Injete o Router
+  constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService) {} // Injete o Router
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -25,15 +25,16 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.loginService.login(this.loginForm.value.username!, this.loginForm.value.password!).subscribe({
         next: () => {
-          console.log("Login com sucesso");
-          this.router.navigate(['/task']); // Redireciona para a rota de task
+          this.router.navigate(['/tasks']);
+          this.toastr.success('Usuário Logado!');
         },
         error: (err) => {
-          console.error("Erro no login", err);
+          this.toastr.error('Erro ao conectar');
         }
       });
     } else {
-      console.error("Formulário inválido");
+      this.toastr.error('Error')
+      return;
     }
   }
 }

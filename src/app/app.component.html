@@ -1,2 +1,28 @@
-<h1>System Task With Auth</h1>
-<router-outlet></router-outlet>
+<div class="bg-indigo-700 p-4">
+  <nav class="flex justify-between items-center text-white">
+    <div>
+      <h1 class="text-3xl font-semibold">Task Manager</h1>
+    </div>
+    <div class="space-x-4">
+      <!-- Verifica se o usuário está autenticado -->
+       @if (isAuthenticated) {
+        <ng-container>
+          <span class="text-lg">{{ username }}</span>
+          <button (click)="logout()" class="hover:text-indigo-300">Logout</button>
+        </ng-container>
+       } @else {
+        <!-- Link de login caso não esteja autenticado -->
+        <ng-template #loginLink>
+         <a routerLink="/auth/login" class="hover:text-indigo-300">Login</a>
+        </ng-template>
+       }
+    </div>
+  </nav>
+</div>
+
+<!-- Corpo do aplicativo -->
+<div class="min-h-screen bg-gray-100">
+  <div class="container mx-auto px-4 py-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>

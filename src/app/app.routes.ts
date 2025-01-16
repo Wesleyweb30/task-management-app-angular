@@ -1,17 +1,27 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { TaskComponent } from './task/task.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { TaskListComponent } from './task-list/task-list.component';
+import { TaskForm } from './task-form/task-form.component';
 
 export const routes: Routes = [
-    {
-        path: "login",
-        component: LoginComponent
-    },
-    {
-        path: "task",
-        component: TaskComponent,
-        canActivate: [AuthGuardService]
-    }
+  {
+    path: "",
+    component: LoginComponent
+  },
+  {
+    path: "auth/login",
+    component: LoginComponent
+  },
+  {
+    path: "tasks",
+    component: TaskListComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: "tasks/registrar",  // Sub-rota para registrar
+    component: TaskForm,
+    canActivate: [AuthGuardService]  // Protege a sub-rota
+  }
+
 ];

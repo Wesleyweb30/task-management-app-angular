@@ -1,0 +1,48 @@
+<div class="container mx-auto mt-8 px-4">
+  <!-- Link para nova tarefa -->
+  <a routerLink="registrar" 
+     class="inline-block mb-8 px-8 py-3 bg-indigo-600 text-white rounded-md shadow-md hover:bg-indigo-700 transition-colors duration-300">
+     Criar Nova Tarefa
+  </a>
+
+  <!-- Título da seção -->
+  <h1 class="text-4xl font-bold text-center mb-6 text-indigo-800">Lista de Tarefas</h1>
+
+  <!-- Grid de cards responsiva -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Exibe cada tarefa -->
+    @for (task of tasks; track task.id) {
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden">
+        <!-- Título da tarefa -->
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">{{ task.title }}</h2>
+
+        <!-- Descrição da tarefa -->
+        <p class="text-gray-600 text-sm mb-6">{{ task.description || 'Sem descrição fornecida.' }}</p>
+
+        <!-- Status e Expiração da tarefa -->
+        <div class="flex justify-between text-sm text-gray-600 mb-6">
+          <div>
+            <span class="font-semibold">Status:</span> 
+            <span class="inline-block px-3 py-1 text-xs font-semibold text-white 
+                        {{ task.status === 'concluída' ? 'bg-green-500' : 
+                           task.status === 'pendente' ? 'bg-yellow-500' : 'bg-blue-500' }}">
+              {{ task.status }}
+            </span>
+          </div>
+          <div>
+            <span class="font-semibold">Expiração:</span> {{ task.expirationDate   }}
+          </div>
+        </div>
+
+        <!-- Botão de excluir (simples e moderno) -->
+        <button (click)="deleteTask(task.id!)"
+          class="absolute top-4 right-4 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors duration-300"
+          aria-label="Excluir tarefa">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    }
+  </div>
+</div>
