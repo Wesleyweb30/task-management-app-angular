@@ -19,7 +19,7 @@ Este é o frontend de uma aplicação desenvolvida em Angular 18, conectada a um
 - **Framework**: Angular 18
 - **Linguagem**: TypeScript
 - **Gerenciamento de Estado**: RxJS
-- **Estilização**: SCSS
+- **Estilização**: SCSS, tailwind
 - **Comunicação HTTP**: Angular HttpClient
 
 ---
