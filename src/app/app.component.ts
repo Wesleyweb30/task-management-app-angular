@@ -24,12 +24,13 @@ export class AppComponent {
     const token = sessionStorage.getItem('auth-token');
     if (token) {
       this.isAuthenticated = true;
+    } else {
+      this.isAuthenticated = false;
     }
   }
  
 
   logout(): void {
-    // Limpa os dados de autenticação
     sessionStorage.removeItem('auth-token');
     this.isAuthenticated = false;
     this.router.navigate(['/auth/login']);

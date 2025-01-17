@@ -1,20 +1,23 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { TaskType } from '../types/task-type';
+import { environment } from '../../environments/environment.prod';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:3000/task'; // URL base da API
+   private apiUrl = environment.apiUrl + "task"
 
   constructor(private http: HttpClient) {}
 
   // Método para obter os headers com token de autenticação
   private getHeaders(): HttpHeaders {
-    const token = sessionStorage.getItem('auth-token'); // Obtenha o token armazenado
+    const token = sessionStorage.getItem('auth-token');
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -24,7 +27,7 @@ export class TaskService {
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Ocorreu um erro desconhecido!';
     if (error.error instanceof ErrorEvent) {
-      // Erros no cliente (ex.: rede)
+      // Erros no cliente
       errorMessage = `Erro: ${error.error.message}`;
     } else {
       // Erros no servidor

@@ -2,6 +2,8 @@ import { Component} from '@angular/core';
 import { TaskType } from '../types/task-type';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../services/task.service';
+import { Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-form',
@@ -11,10 +13,9 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['./task-form.component.scss'], // Corrigido para "styleUrls"
 })
 export class TaskForm{
-  tasks: TaskType[] = [];
   taskForm: FormGroup;
 
-  constructor(private taskService: TaskService, private fb: FormBuilder) {
+  constructor(private taskService: TaskService, private fb: FormBuilder,private router: Router, private toastr: ToastrService) {
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
@@ -29,13 +30,14 @@ export class TaskForm{
 
       this.taskService.addTask(newTask).subscribe({
         next: (task) => {
-          this.tasks.push(task);
           this.taskForm.reset();
+          this.router.navigate(['/tasks']);
+          this.toastr.success('Tarefa Criada Com sucesso!');
         },
-        error: (err) => console.error('Erro ao adicionar tarefa:', err),
+        error: (err) => this.toastr.error('Tarefa Não Criada, Tente Novamente ❌')
       });
     }
   }
 
-
+  
 }
