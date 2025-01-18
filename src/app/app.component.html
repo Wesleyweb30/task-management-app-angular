@@ -7,14 +7,14 @@
       <!-- Verifica se o usuário está autenticado -->
        @if (isAuthenticated) {
         <ng-container>
-          <span class="text-lg">{{ username }}</span>
+          <span>Usuário: {{username}}</span>
           <button (click)="logout()" class="hover:text-indigo-300">Logout</button>
         </ng-container>
-       } @else {
-        <!-- Link de login caso não esteja autenticado -->
-        <ng-template #loginLink>
+       } @else{
+        <div>
          <a routerLink="/auth/login" class="hover:text-indigo-300">Login</a>
-        </ng-template>
+         <a routerLink="/" class="hover:text-indigo-300">Registrar-se</a>
+        </div>
        }
     </div>
   </nav>

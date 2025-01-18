@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-
+import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,9 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Task';
+  username: string = '';
 
   isAuthenticated: boolean = false;
-  username: string = '';
 
   constructor(private router: Router) {}
 
@@ -22,8 +22,12 @@ export class AppComponent {
   }
   checkAuthStatus(): void {
     const token = sessionStorage.getItem('auth-token');
+    
     if (token) {
       this.isAuthenticated = true;
+      const tokenPayload = jwtDecode(token) as any;
+      this.username = tokenPayload.username;
+      console.log(this.username)
     } else {
       this.isAuthenticated = false;
     }
@@ -32,6 +36,7 @@ export class AppComponent {
 
   logout(): void {
     sessionStorage.removeItem('auth-token');
+    sessionStorage.removeItem('username');
     this.isAuthenticated = false;
     this.router.navigate(['/auth/login']);
   }
