@@ -1,0 +1,44 @@
+<p>user-register works!</p>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-xs">
+        <h1 class="text-2xl font-bold text-center text-gray-700">Registrar</h1>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-8 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Nome de Usuário</label>
+                <input id="username" type="text" formControlName="username" placeholder="Seu nome de usuário" 
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                @if(registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched) {
+                    <p class="text-red-500 text-xs italic">Nome de usuário é obrigatório.</p>
+                }
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
+                <input id="password" type="password" formControlName="password" placeholder="Sua senha" 
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                @if(registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched) {
+                    <p class="text-red-500 text-xs italic">Senha é obrigatória.</p>
+                }
+                @if(registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched) {
+                    <p class="text-red-500 text-xs italic">A senha deve ter no mínimo 6 caracteres.</p>
+                }
+            </div>
+
+            <div class="mb-6">
+                <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Senha</label>
+                <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirme sua senha" 
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                @if(registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched) {
+                    <p class="text-red-500 text-xs italic">Confirmação de senha é obrigatória.</p>
+                }
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [disabled]="!registerForm.valid">
+                    Registrar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

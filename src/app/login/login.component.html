@@ -36,6 +36,10 @@
                     type="submit" [disabled]="!loginForm.valid">
                     Entrar
                 </button>
+                <p class="text-center text-gray-500 text-xs">
+                    Não possui conta?
+                    <a routerLink="/auth/register" class="text-blue-500 hover:text-blue-700">Registre-se aqui</a>
+                </p>
             </div>
         </form>
     </div>

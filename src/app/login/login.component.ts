@@ -1,13 +1,14 @@
 import { LoginService } from './../services/login.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router'; // Importe o Router
+import { Router, RouterLink } from '@angular/router'; // Importe o Router
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    RouterLink,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'] // Corrigido o nome da propriedade
