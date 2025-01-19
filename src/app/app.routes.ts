@@ -6,8 +6,9 @@ import { TaskForm } from './task-form/task-form.component';
 
 export const routes: Routes = [
   {
-    path: "",
-    component: LoginComponent
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full',
   },
   {
     path: "auth/login",
